@@ -8,10 +8,11 @@ import router from './router/routes';
 
 const APP = express();
 APP.use(express.urlencoded({extended: false}));
+APP.use(express.json());
 APP.use(cors());
 APP.use("/control", router);
 
-const PORT = process.env.PORT || 43001;
+const PORT = process.env.PORT || 43002;
 // 404 endpoint 
 APP.use((req:Request, res:Response, next:NextFunction) => {
     res.status(404).json({

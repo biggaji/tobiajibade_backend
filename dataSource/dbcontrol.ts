@@ -30,9 +30,13 @@ class DBControl {
             let { fullname, received_at, email, company, launch_timeframe, budget } = saveHireRequest.rows[0];
             let message = `Hi, I'm ${fullname}, I work for ${company}. Come and work with us for ${launch_timeframe} for a budget of ${budget}, thanks.`;
 
-            this.notifyMe(fullname, "hire", message, received_at);
-
-            this.notifySender(fullname, email);
+            // Only send a mail if there is a new data in the database
+            console.log(saveHireRequest.rowCount)
+            if(saveHireRequest.rowCount === 1) {
+              this.notifyMe(fullname, "hire", message, received_at);
+  
+              this.notifySender(fullname, email);
+            };
             return saveHireRequest.rowCount === 1 ? true : false;
             
         } catch (e) {
@@ -49,9 +53,14 @@ class DBControl {
 
             let { message, fullname, received_at, email } = saveContactRequest.rows[0];
 
-            this.notifyMe(fullname, "contact", message, received_at);
+            // Only send mail if new data was inserted into database
+            console.log(saveContactRequest.rowCount);
 
-            this.notifySender(fullname, email);
+            if(saveContactRequest.rowCount === 1) {
+              this.notifyMe(fullname, "contact", message, received_at);
+  
+              this.notifySender(fullname, email);
+            };
 
             return saveContactRequest.rowCount === 1 ? true : false;
 
