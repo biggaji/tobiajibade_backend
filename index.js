@@ -8,6 +8,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 if (process.env.NODE_ENV !== 'production') {
     dotenv_1.default.config();
 }
+;
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const routes_1 = __importDefault(require("./router/routes"));
@@ -17,7 +18,7 @@ APP.use(express_1.default.urlencoded({ extended: false }));
 APP.use(express_1.default.json());
 APP.use((0, cors_1.default)());
 APP.use("/control", routes_1.default);
-const PORT = process.env.PORT || 43002;
+const PORT = process.env.PORT || 43001;
 // 404 endpoint 
 APP.use((req, res, next) => {
     res.status(404).json({
