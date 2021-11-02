@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 if(process.env.NODE_ENV !== 'production') {
     dotenv.config();
-}
+};
 import express , { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import router from './router/routes';
@@ -12,7 +12,7 @@ APP.use(express.json());
 APP.use(cors());
 APP.use("/control", router);
 
-const PORT = process.env.PORT || 43002;
+const PORT = process.env.PORT || 43001;
 // 404 endpoint 
 APP.use((req:Request, res:Response, next:NextFunction) => {
     res.status(404).json({
