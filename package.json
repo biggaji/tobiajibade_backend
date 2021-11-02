@@ -4,7 +4,7 @@
   "description": "Dockerized back-end micro-service for tobiajibade.com",
   "main": "index.js",
   "scripts": {
-    "test": "mocha || true",
+    "test": "mocha --timeout 60000 || true",
     "start": "node index.js",
     "dev": "nodemon index.ts",
     "build": "tsc -p ."
